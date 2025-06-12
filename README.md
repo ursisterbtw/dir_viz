@@ -41,6 +41,8 @@ For optimal results, especially when following workflows or prompt sequences out
 
 **Flowcharter** generates animated SVGs with glowing effects:
 
+![Flowcharter Example](./flowchart.svg)
+
 - Nodes pulse and glow with neon colors
 - Edges animate with flowing dashes
 - Hover effects for interactive exploration
