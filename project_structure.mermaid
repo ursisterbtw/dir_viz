@@ -1,0 +1,102 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px' }}}%%
+graph LR
+    %% Layout settings
+    %% Node styling defaults
+    dir_viz[dir_viz/]:::directory
+    config[config/]:::directory
+    dir_viz --- config
+    __init___py(__init__.py):::file
+    config --- __init___py
+    mermaid_py(mermaid.py):::file
+    config --- mermaid_py
+    repository_py(repository.py):::file
+    config --- repository_py
+    visualization_py(visualization.py):::file
+    config --- visualization_py
+    flowcharter_egg_info[flowcharter.egg-info/]:::directory
+    dir_viz --- flowcharter_egg_info
+    dependency_links_txt(dependency_links.txt):::file
+    flowcharter_egg_info --- dependency_links_txt
+    entry_points_txt(entry_points.txt):::file
+    flowcharter_egg_info --- entry_points_txt
+    PKG_INFO(PKG-INFO):::file
+    flowcharter_egg_info --- PKG_INFO
+    requires_txt(requires.txt):::file
+    flowcharter_egg_info --- requires_txt
+    SOURCES_txt(SOURCES.txt):::file
+    flowcharter_egg_info --- SOURCES_txt
+    top_level_txt(top_level.txt):::file
+    flowcharter_egg_info --- top_level_txt
+    repomixr[repomixr/]:::directory
+    dir_viz --- repomixr
+    docs[docs/]:::directory
+    repomixr --- docs
+    commands_md(commands.md):::file
+    docs --- commands_md
+    prompt_v1_md(prompt-v1.md):::file
+    docs --- prompt_v1_md
+    prompt_v2_md(prompt-v2.md):::file
+    docs --- prompt_v2_md
+    repos_chatgpt_md(repos-chatgpt.md):::file
+    docs --- repos_chatgpt_md
+    repos_claude_md(repos-claude.md):::file
+    docs --- repos_claude_md
+    repos_consolidated_md(repos-consolidated.md):::file
+    docs --- repos_consolidated_md
+    repos_grok_md(repos-grok.md):::file
+    docs --- repos_grok_md
+    repos_perplexity_md(repos-perplexity.md):::file
+    docs --- repos_perplexity_md
+    workflow[workflow/]:::directory
+    repomixr --- workflow
+    s1_prompt_md(s1-prompt.md):::file
+    workflow --- s1_prompt_md
+    s2_follow_up_md(s2-follow-up.md):::file
+    workflow --- s2_follow_up_md
+    s3_xml_parser_py(s3-xml-parser.py):::file
+    workflow --- s3_xml_parser_py
+    _env_example(.env.example):::file
+    repomixr --- _env_example
+    _gitignore(.gitignore):::file
+    repomixr --- _gitignore
+    __init___py_29(__init__.py):::file
+    repomixr --- __init___py_29
+    repomixr_py(repomixr.py):::file
+    repomixr --- repomixr_py
+    repos_txt(repos.txt):::file
+    repomixr --- repos_txt
+    requirements_txt(requirements.txt):::file
+    repomixr --- requirements_txt
+    utils[utils/]:::directory
+    dir_viz --- utils
+    __init___py_34(__init__.py):::file
+    utils --- __init___py_34
+    cli_common_py(cli_common.py):::file
+    utils --- cli_common_py
+    directory_scanner_py(directory_scanner.py):::file
+    utils --- directory_scanner_py
+    file_operations_py(file_operations.py):::file
+    utils --- file_operations_py
+    flowchart_dot(flowchart.dot):::file
+    dir_viz --- flowchart_dot
+    flowchart_svg(flowchart.svg):::file
+    dir_viz --- flowchart_svg
+    flowcharter_py(flowcharter.py):::file
+    dir_viz --- flowcharter_py
+    mermaider_py(mermaider.py):::file
+    dir_viz --- mermaider_py
+    pyproject_toml(pyproject.toml):::file
+    dir_viz --- pyproject_toml
+    requirements_txt_43(requirements.txt):::file
+    dir_viz --- requirements_txt_43
+    run_tests_py(run_tests.py):::file
+    dir_viz --- run_tests_py
+    setup_py(setup.py):::file
+    dir_viz --- setup_py
+    uv_lock(uv.lock):::file
+    dir_viz --- uv_lock
+    %% Styling
+    classDef default stroke:#333,stroke-width:1px
+    classDef directory fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef file fill:#f5f5f5,stroke:#616161,stroke-width:1px
+    classDef error fill:#fee,stroke:#c00,stroke-width:1px

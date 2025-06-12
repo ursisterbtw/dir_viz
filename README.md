@@ -1,50 +1,61 @@
-# ⚡️ Directory Visualization Tools
+# Directory Visualization Tools
 
 **A collection of powerful CLI tools that transform directory structures into stunning visual diagrams!**
 
-This project provides two complementary tools for visualizing directory structures:
+This project currently contains 3 tools for visualizing directory structures and similar tasks:
 
-- **🎨 flowcharter.py**: Generates animated SVG flowcharts with neon effects and glowing animations
-- **📊 mermaider.py**: Creates clean Mermaid diagrams for documentation and presentations
+- **flowcharter.py**: Generates animated SVG flowcharts of your directory structure with neon effects and glowing animations.
+- **mermaider.py**: Creates clean Mermaid diagrams of your directory structure for documentation and presentations.
+- **repomixr**: A Python script (located in the `repomixr/` directory) that processes GitHub repositories. It clones specified repositories, runs the `npx repomix` command (a Node.js tool) to analyze their content (excluding many common non-source files like documentation, binaries, and build artifacts), and saves the resulting `repomix-output.xml` to a configurable output directory (default `repomixd/`). It supports processing multiple repositories concurrently and can take input from command-line arguments or a source file.
 
-Both tools feature performance optimizations including memory-efficient scanning, cached operations, and smart exclusion patterns for build/cache folders.
+All tools feature performance optimizations including memory-efficient scanning, cached operations, and smart exclusion patterns for build/cache folders.
 
-## 🚀 Features
+## Features
 
-### 🎨 Flowcharter (flowcharter.py)
-- **Animated SVG Output:** Creates stunning flowcharts with glowing nodes, pulsing edges, and smooth animations
+### Flowcharter (flowcharter.py)
+
+- **Animated SVG Output:** Creates eye-popping flowcharts with glowing nodes, pulsing edges, and smooth animations
 - **Neon Theming:** Cyberpunk-inspired color schemes with customizable palettes
 - **Performance Optimized:** Memory-efficient scanning with cached font loading and node generation
 - **Graphviz Integration:** Robust layouts using pydot and Graphviz
 - **Multiple Formats:** Outputs both DOT and animated/static SVG files
 
-### 📊 Mermaider (mermaider.py)  
+### Mermaider (mermaider.py)  
+
 - **Mermaid Diagrams:** Generates clean, documentation-ready Mermaid syntax
 - **Smart Formatting:** Automatic node styling and hierarchy visualization
 - **Configurable Output:** Customizable styling and structure options
 
-### 🔧 Shared Features
+### Shared Features
+
 - **Smart Exclusions:** Automatically filters out build folders, caches, and common artifacts
 - **Parallel Processing:** Optional multi-threaded directory scanning for large projects
 - **Modular Architecture:** Clean, maintainable codebase with shared utilities
 - **Flexible Configuration:** Centralized settings for colors, patterns, and behavior
 
-## 🔥 Example Output
+### Workflow Guidance
+
+For optimal results, especially when following workflows or prompt sequences outlined in external documentation such as the [project workflow guide](https://docs.workflow.design/llms.txt), it is highly recommended to execute prompts in the specified sequential order. This ensures that each step correctly builds upon the previous ones, leading to the most effective and accurate outcomes.
+
+## Example Output
 
 **Flowcharter** generates animated SVGs with glowing effects:
+
 - Nodes pulse and glow with neon colors
 - Edges animate with flowing dashes
 - Hover effects for interactive exploration
 - Embedded fonts for consistent rendering
 
 **Mermaider** creates clean Mermaid diagrams:
+
 - Perfect for documentation and README files
 - Compatible with GitHub, GitLab, and Mermaid Live
 - Hierarchical structure with proper styling
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 **Prerequisites:**
+
 - Python 3.6+
 - Graphviz (system package)
 
@@ -77,7 +88,7 @@ python flowcharter.py /path/to/your/project
 python mermaider.py /path/to/your/project -o project.mermaid
 ```
 
-## ⚡ Usage
+## Usage
 
 ### Flowcharter (Animated SVG)
 
@@ -114,12 +125,14 @@ python mermaider.py /path/to/your/project --max-depth 5
 ```
 
 **Viewing Results:**
+
 - SVG files: Open in any modern browser to see animations
 - Mermaid files: Copy content to [mermaid.live](https://mermaid.live) or use in documentation
 
-## 🧠 How It Works
+## How It Works
 
 ### Flowcharter Process
+
 1. **Scans** directory recursively with memory-efficient generators
 2. **Creates** DOT graph using pydot with optimized node generation
 3. **Applies** neon color schemes and styling
@@ -127,12 +140,13 @@ python mermaider.py /path/to/your/project --max-depth 5
 5. **Adds** glowing effects, pulsing nodes, and animated edges
 
 ### Mermaider Process
+
 1. **Traverses** directory structure with smart exclusions
 2. **Builds** hierarchical node relationships
 3. **Applies** Mermaid syntax formatting
 4. **Outputs** clean diagram code ready for documentation
 
-## 🎨 Customization
+## Customization
 
 The tools use a modular configuration system:
 
@@ -141,18 +155,19 @@ The tools use a modular configuration system:
 - **Animation settings**: Adjust CSS animations in the SVG generation
 - **Mermaid styling**: Customize node shapes and styling in Mermaid output
 
-## 🖥️ Dependencies
+## ependencies
 
 - **Python 3.6+**
 - **System**: `graphviz` package
 - **Python packages**: `pydot`, `tqdm`
 
-## 📂 Project Structure
+## Project Structure
 
-```
+```text
 directory-visualization-tools/
 ├── flowcharter.py              # Animated SVG flowchart generator
 ├── mermaider.py               # Mermaid diagram generator  
+├── repomixr/                  # Repository analysis and management tool
 ├── config/                    # Configuration modules
 │   ├── __init__.py           #   Shared constants and imports
 │   ├── mermaid.py            #   Mermaid-specific settings
@@ -165,12 +180,14 @@ directory-visualization-tools/
 └── README.md                  # This file
 ```
 
-## ⚙️ Tool Details
+## ool Details
 
-### 🎨 flowcharter.py
+### `flowcharter.py`
+
 **Generates animated SVG flowcharts with neon effects**
 
 **Command line options:**
+
 ```bash
 python flowcharter.py <directory> [options]
   -o, --output FILE         Output SVG file (default: flowchart.svg)
@@ -182,10 +199,12 @@ python flowcharter.py <directory> [options]
   --open                   Open result in browser
 ```
 
-### 📊 mermaider.py  
+### `mermaider.py`  
+
 **Creates clean Mermaid diagrams for documentation**
 
 **Command line options:**
+
 ```bash
 python mermaider.py <directory> [options]
   -o, --output FILE         Output Mermaid file
@@ -193,7 +212,7 @@ python mermaider.py <directory> [options]
   --quiet                  Suppress progress output
 ```
 
-## 🚀 Performance Features
+## Performance Features
 
 - **Memory Efficient**: Generator-based directory scanning
 - **Cached Operations**: Font loading and node generation with LRU caching  
@@ -201,19 +220,20 @@ python mermaider.py <directory> [options]
 - **Parallel Processing**: Optional multi-threaded scanning for large projects
 - **Optimized Rendering**: Efficient SVG generation with embedded animations
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Feel free to:
+
 - Report bugs or request features via issues
 - Submit pull requests for improvements
 - Share examples of generated visualizations
 - Suggest new output formats or styling options
 
-## 📝 License
+## License
 
 MIT License - see LICENSE file for details
 
-## 👩‍💻 Author
+## Author
 
 sister
 

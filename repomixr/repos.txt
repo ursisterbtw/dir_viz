@@ -1,0 +1,27 @@
+# repos
+
+## crypto
+elizaOS/eliza
+
+## btc
+bitcoin/bitcoin
+
+## eth
+dexloom/loom
+paradigmxyz/reth
+paradigmxyz/cryo
+paradigmxyz/solar
+
+## sol
+anzya-xyz/agave
+Syndica/sig
+piotrostr/listen
+Turbin3/poseidon
+sevenlabs-hq/carbon
+LiteSVM/litesvm
+
+## algo trading
+nautechsystems/nautilus_trader
+
+## optimization guides
+ashvardanian/less_slow.cpp

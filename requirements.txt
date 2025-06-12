@@ -1,0 +1,12 @@
+setuptools
+types-setuptools
+tqdm
+graphviz
+pydot
+numpy
+isort
+black
+ruff
+pylint
+mypy
+pytest
