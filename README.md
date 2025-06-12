@@ -1,6 +1,6 @@
-# Directory Visualization Tools
+# dir_viz 👀
 
-**A collection of powerful CLI tools that transform directory structures into stunning visual diagrams!**
+**A collection of CLI tools that transform directory structures into stunning visual diagrams!**
 
 This project currently contains 3 tools for visualizing directory structures and similar tasks:
 
