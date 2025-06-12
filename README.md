@@ -182,7 +182,7 @@ directory-visualization-tools/
 └── README.md                  # This file
 ```
 
-## ool Details
+## Tool Details
 
 ### `flowcharter.py`
 
