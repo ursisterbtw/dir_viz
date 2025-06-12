@@ -54,6 +54,14 @@ For optimal results run the workflow/ prompts in sequential order. This ensures 
 - Compatible with GitHub, GitLab, and Mermaid Live
 - Hierarchical structure with proper styling
 
+**Repomixr** (repomixr/repomixr.py)
+
+Batch Repo Analysis: Clones one or more GitHub repositories, removes git metadata, and runs npx repomix to generate summary XML files.
+Flexible Input: Accepts repo names as CLI arguments or from a text file (SOURCE_REPOS_TXT_FILE).
+Automated Cleanup: Cleans up all temporary files and supports parallel processing for speed.
+Custom Output: Stores XML reports in a configurable output directory (OUTPUT_DIR).
+Authentication Support: Can use a GitHub token for private repos via GitHub CLI.
+
 ## Installation & Setup
 
 **Prerequisites:**
@@ -124,6 +132,16 @@ python mermaider.py /path/to/your/project -o project.mermaid
 
 # With depth limit
 python mermaider.py /path/to/your/project --max-depth 5
+```
+### Repomixr
+
+```bash
+# Analyze a repo
+python repomixr/repomixr.py bitcoin/bitcoin
+
+# Analyze multiple repos from a file
+export SOURCE_REPOS_TXT_FILE=my_repos.txt
+python repomixr/repomixr.py
 ```
 
 **Viewing Results:**
