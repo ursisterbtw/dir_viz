@@ -1,4 +1,4 @@
-# dir_viz 👀
+# 👀 dir_viz 👀
 
 **A collection of CLI tools that transform directory structures into stunning visual diagrams!**
 
