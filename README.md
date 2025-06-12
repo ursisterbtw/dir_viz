@@ -35,7 +35,7 @@ All tools feature performance optimizations including memory-efficient scanning,
 
 ### Workflow Guidance
 
-For optimal results, especially when following workflows or prompt sequences outlined in external documentation such as the [project workflow guide](https://docs.workflow.design/llms.txt), it is highly recommended to execute prompts in the specified sequential order. This ensures that each step correctly builds upon the previous ones, leading to the most effective and accurate outcomes.
+For optimal results run the workflow/ prompts in sequential order. This ensures that each step correctly builds upon the previous ones, leading to the most effective and accurate outcomes.
 
 ## Example Output
 
@@ -157,7 +157,7 @@ The tools use a modular configuration system:
 - **Animation settings**: Adjust CSS animations in the SVG generation
 - **Mermaid styling**: Customize node shapes and styling in Mermaid output
 
-## ependencies
+## Dependencies
 
 - **Python 3.6+**
 - **System**: `graphviz` package
