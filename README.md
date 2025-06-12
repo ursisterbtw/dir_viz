@@ -26,6 +26,14 @@ All tools feature performance optimizations including memory-efficient scanning,
 - **Smart Formatting:** Automatic node styling and hierarchy visualization
 - **Configurable Output:** Customizable styling and structure options
 
+### Repomixr (repomixr/repomixr.py)
+
+Batch Repo Analysis: Clones one or more GitHub repositories, removes git metadata, and runs npx repomix to generate summary XML files.
+Flexible Input: Accepts repo names as CLI arguments or from a text file (SOURCE_REPOS_TXT_FILE).
+Automated Cleanup: Cleans up all temporary files and supports parallel processing for speed.
+Custom Output: Stores XML reports in a configurable output directory (OUTPUT_DIR).
+Authentication Support: Can use a GitHub token for private repos via GitHub CLI.
+
 ### Shared Features
 
 - **Smart Exclusions:** Automatically filters out build folders, caches, and common artifacts
@@ -53,14 +61,6 @@ For optimal results run the workflow/ prompts in sequential order. This ensures 
 - Perfect for documentation and README files
 - Compatible with GitHub, GitLab, and Mermaid Live
 - Hierarchical structure with proper styling
-
-**Repomixr** (repomixr/repomixr.py)
-
-Batch Repo Analysis: Clones one or more GitHub repositories, removes git metadata, and runs npx repomix to generate summary XML files.
-Flexible Input: Accepts repo names as CLI arguments or from a text file (SOURCE_REPOS_TXT_FILE).
-Automated Cleanup: Cleans up all temporary files and supports parallel processing for speed.
-Custom Output: Stores XML reports in a configurable output directory (OUTPUT_DIR).
-Authentication Support: Can use a GitHub token for private repos via GitHub CLI.
 
 ## Installation & Setup
 
