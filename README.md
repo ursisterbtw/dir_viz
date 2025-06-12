@@ -28,11 +28,11 @@ All tools feature performance optimizations including memory-efficient scanning,
 
 ### Repomixr (repomixr/repomixr.py)
 
-Batch Repo Analysis: Clones one or more GitHub repositories, removes git metadata, and runs npx repomix to generate summary XML files.
-Flexible Input: Accepts repo names as CLI arguments or from a text file (SOURCE_REPOS_TXT_FILE).
-Automated Cleanup: Cleans up all temporary files and supports parallel processing for speed.
-Custom Output: Stores XML reports in a configurable output directory (OUTPUT_DIR).
-Authentication Support: Can use a GitHub token for private repos via GitHub CLI.
+- **Batch Repo Analysis:** Clones one or more GitHub repositories, removes git metadata, and runs npx repomix to generate summary XML files.
+- **Flexible Input:** Accepts repo names as CLI arguments or from a text file (SOURCE_REPOS_TXT_FILE).
+- **Automated Cleanup:** Cleans up all temporary files and supports parallel processing for speed.
+- **Custom Output:** Stores XML reports in a configurable output directory (OUTPUT_DIR).
+- **Authentication Support:** Can use a GitHub token for private repos via GitHub CLI.
 
 ### Shared Features
 
