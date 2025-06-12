@@ -34,16 +34,16 @@ All tools feature performance optimizations including memory-efficient scanning,
 - **Custom Output:** Stores XML reports in a configurable output directory (OUTPUT_DIR).
 - **Authentication Support:** Can use a GitHub token for private repos via GitHub CLI.
 
+### Workflow Guidance
+
+For optimal results run the repomixr/workflow/ prompts in sequential order. This ensures that each step correctly builds upon the previous ones, leading to the most effective and accurate outcomes.
+
 ### Shared Features
 
 - **Smart Exclusions:** Automatically filters out build folders, caches, and common artifacts
 - **Parallel Processing:** Optional multi-threaded directory scanning for large projects
 - **Modular Architecture:** Clean, maintainable codebase with shared utilities
 - **Flexible Configuration:** Centralized settings for colors, patterns, and behavior
-
-### Workflow Guidance
-
-For optimal results run the workflow/ prompts in sequential order. This ensures that each step correctly builds upon the previous ones, leading to the most effective and accurate outcomes.
 
 ## Example Output
 
