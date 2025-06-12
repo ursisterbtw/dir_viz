@@ -231,10 +231,6 @@ Contributions are welcome! Feel free to:
 - Share examples of generated visualizations
 - Suggest new output formats or styling options
 
-## License
-
-MIT License - see LICENSE file for details
-
 ## Author
 
 sister
