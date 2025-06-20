@@ -1,0 +1,10 @@
+[package]
+name = "mapper"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+webbrowser = "1.0.4"
+base64 = "0.21"
+flate2 = "1.0"
+urlencoding = "2.1"
