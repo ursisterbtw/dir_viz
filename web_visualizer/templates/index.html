@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Directory Visualizer - Interactive D3.js Explorer</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div id="particle-background"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">
+                <i class="fas fa-project-diagram"></i>
+                <span class="logo-text">Directory<span class="neon-accent">VIZ</span></span>
+            </h1>
+            <div class="header-controls">
+                <button id="theme-toggle" class="btn-icon" title="Toggle Theme">
+                    <i class="fas fa-palette"></i>
+                </button>
+                <button id="settings-btn" class="btn-icon" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button id="fullscreen-btn" class="btn-icon" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Control Panel -->
+        <aside class="control-panel">
+            <div class="panel-section">
+                <h3><i class="fas fa-folder-open"></i> Directory Scanner</h3>
+                <div class="input-group">
+                    <input type="text" id="path-input" placeholder="Enter directory path..." value="/home/sistr/Projects/dir_viz">
+                    <button id="scan-btn" class="btn-primary">
+                        <i class="fas fa-search"></i> Scan
+                    </button>
+                </div>
+                <div class="input-group">
+                    <label for="depth-slider">Max Depth: <span id="depth-value">5</span></label>
+                    <input type="range" id="depth-slider" min="1" max="10" value="5" class="slider">
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3><i class="fas fa-eye"></i> Visualization</h3>
+                <div class="viz-controls">
+                    <select id="layout-select" class="select-dropdown">
+                        <option value="tree">🌳 Tree Layout</option>
+                        <option value="force">⚡ Force Layout</option>
+                        <option value="radial">🎯 Radial Tree</option>
+                        <option value="treemap">📦 Treemap</option>
+                        <option value="sunburst">☀️ Sunburst</option>
+                        <option value="galaxy">🌌 Galaxy View</option>
+                    </select>
+                    
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="show-files" checked>
+                            <span class="checkmark"></span>
+                            <i class="fas fa-file"></i> Show Files
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="show-sizes" checked>
+                            <span class="checkmark"></span>
+                            <i class="fas fa-weight"></i> Show Sizes
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="animate-nodes" checked>
+                            <span class="checkmark"></span>
+                            <i class="fas fa-magic"></i> Animations
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="particle-effects" checked>
+                            <span class="checkmark"></span>
+                            <i class="fas fa-sparkles"></i> Particle Effects
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3><i class="fas fa-palette"></i> Color Themes</h3>
+                <div class="color-themes">
+                    <div class="theme-selector">
+                        <button class="theme-btn active" data-theme="neon">
+                            <div class="theme-preview neon-theme"></div>
+                            <i class="fas fa-bolt"></i> Neon
+                        </button>
+                        <button class="theme-btn" data-theme="cyber">
+                            <div class="theme-preview cyber-theme"></div>
+                            <i class="fas fa-microchip"></i> Cyber
+                        </button>
+                        <button class="theme-btn" data-theme="matrix">
+                            <div class="theme-preview matrix-theme"></div>
+                            <i class="fas fa-code"></i> Matrix
+                        </button>
+                        <button class="theme-btn" data-theme="synthwave">
+                            <div class="theme-preview synthwave-theme"></div>
+                            <i class="fas fa-wave-square"></i> Synthwave
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3><i class="fas fa-download"></i> Export</h3>
+                <div class="export-controls">
+                    <select id="export-format" class="select-dropdown">
+                        <option value="svg">🖼️ SVG</option>
+                        <option value="png">📷 PNG</option>
+                        <option value="pdf">📄 PDF</option>
+                        <option value="json">📋 JSON</option>
+                    </select>
+                    <button id="export-btn" class="btn-secondary">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+            </div>
+
+            <div class="panel-section stats-panel">
+                <h3><i class="fas fa-chart-bar"></i> Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label"><i class="fas fa-file"></i> Files</span>
+                        <span class="stat-value" id="file-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label"><i class="fas fa-folder"></i> Directories</span>
+                        <span class="stat-value" id="dir-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label"><i class="fas fa-database"></i> Total Size</span>
+                        <span class="stat-value" id="total-size">0 B</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label"><i class="fas fa-layer-group"></i> Depth</span>
+                        <span class="stat-value" id="max-depth">0</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Visualization Container -->
+        <section class="viz-container">
+            <div class="viz-header">
+                <div class="viz-title">
+                    <h2 id="current-path">Select a directory to visualize</h2>
+                    <div class="viz-breadcrumb" id="breadcrumb"></div>
+                </div>
+                <div class="viz-controls-top">
+                    <button id="zoom-in" class="btn-icon" title="Zoom In">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button id="zoom-out" class="btn-icon" title="Zoom Out">
+                        <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button id="reset-zoom" class="btn-icon" title="Reset Zoom">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </button>
+                    <button id="auto-fit" class="btn-icon" title="Auto Fit">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="viz-content">
+                <div id="loading-spinner" class="loading-spinner hidden">
+                    <div class="spinner"></div>
+                    <p>Scanning directory...</p>
+                </div>
+                
+                <div id="error-message" class="error-message hidden">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p id="error-text">Something went wrong</p>
+                    <button id="retry-btn" class="btn-secondary">Try Again</button>
+                </div>
+                
+                <svg id="visualization" class="visualization-svg"></svg>
+                
+                <!-- Tooltip -->
+                <div id="tooltip" class="tooltip hidden">
+                    <div class="tooltip-header">
+                        <i class="tooltip-icon"></i>
+                        <span class="tooltip-name"></span>
+                    </div>
+                    <div class="tooltip-content">
+                        <div class="tooltip-item">
+                            <span class="tooltip-label">Type:</span>
+                            <span class="tooltip-value tooltip-type"></span>
+                        </div>
+                        <div class="tooltip-item">
+                            <span class="tooltip-label">Size:</span>
+                            <span class="tooltip-value tooltip-size"></span>
+                        </div>
+                        <div class="tooltip-item">
+                            <span class="tooltip-label">Path:</span>
+                            <span class="tooltip-value tooltip-path"></span>
+                        </div>
+                        <div class="tooltip-item tooltip-children">
+                            <span class="tooltip-label">Children:</span>
+                            <span class="tooltip-value tooltip-child-count"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Status Bar -->
+    <footer class="status-bar">
+        <div class="status-left">
+            <span id="status-text">Ready</span>
+            <div class="status-indicator" id="status-indicator"></div>
+        </div>
+        <div class="status-right">
+            <span id="fps-counter">60 FPS</span>
+            <span id="node-counter">0 nodes</span>
+        </div>
+    </footer>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button class="modal-close" id="settings-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h4><i class="fas fa-tachometer-alt"></i> Performance</h4>
+                    <label class="setting-item">
+                        <span><i class="fas fa-clock"></i> Animation Duration (ms)</span>
+                        <input type="number" id="animation-duration" value="750" min="100" max="2000">
+                    </label>
+                    <label class="setting-item">
+                        <span><i class="fas fa-cubes"></i> Max Nodes to Render</span>
+                        <input type="number" id="max-nodes" value="1000" min="100" max="5000">
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <h4><i class="fas fa-magic"></i> Visual Effects</h4>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="enable-glow" checked>
+                        <span class="checkmark"></span>
+                        <i class="fas fa-sun"></i> Enable Glow Effects
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="enable-shadows" checked>
+                        <span class="checkmark"></span>
+                        <i class="fas fa-moon"></i> Enable Shadows
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="enable-gradients" checked>
+                        <span class="checkmark"></span>
+                        <i class="fas fa-fill-drip"></i> Enable Gradients
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/particles.js"></script>
+    <script src="/static/js/themes.js"></script>
+    <script src="/static/js/visualizations.js"></script>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

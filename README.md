@@ -2,11 +2,12 @@
 
 **A collection of CLI tools that transform directory structures into stunning visual diagrams!**
 
-This project currently contains 4 tools for visualizing directory structures and similar tasks:
+This project currently contains 5 tools for visualizing directory structures and similar tasks:
 
 - **flowcharter.py**: Generates animated SVG flowcharts of your directory structure with neon effects and glowing animations.
 - **mermaider.py**: Creates clean Mermaid diagrams of your directory structure for documentation and presentations.
 - **mapper**: A fast Rust tool that generates interactive SVG visualizations and draw.io diagrams of directory structures with neon-themed design, collapsible nodes, and auto-launch functionality.
+- **web_visualizer**: A production-grade web application providing interactive D3.js directory visualization with real-time collaboration, file content preview, WebSocket support, and export capabilities.
 - **repomixr**: A Python script (located in the `repomixr/` directory) that processes GitHub repositories. It clones specified repositories, runs the `npx repomix` command (a Node.js tool) to analyze their content (excluding many common non-source files like documentation, binaries, and build artifacts), and saves the resulting `repomix-output.xml` to a configurable output directory (default `repomixd/`). It supports processing multiple repositories concurrently and can take input from command-line arguments or a source file.
 
 All tools feature performance optimizations including memory-efficient scanning, cached operations, and smart exclusion patterns for build/cache folders.
@@ -35,6 +36,19 @@ All tools feature performance optimizations including memory-efficient scanning,
 - **Fast Rust Implementation:** High-performance directory scanning with smart filtering
 - **Auto-Launch Integration:** Automatically opens draw.io in browser with generated diagram
 - **Smart Filtering:** Excludes common build/cache directories (target, gen, hidden folders)
+
+### Web Visualizer (web_visualizer/) 🌟
+
+- **🎨 Multiple Visualization Layouts:** Tree, Force, Radial, Treemap, Sunburst, and Galaxy layouts with smooth animated transitions
+- **✨ Eye-Catching Neon Effects:** 4 stunning themes (Neon, Cyber, Matrix, Synthwave) with particle effects and glowing animations
+- **🚀 Interactive D3.js Engine:** Real-time directory tree visualization with zoom, pan, hover effects, and expand/collapse functionality
+- **🎭 Advanced Visual Features:** File type color coding, animated node transitions, particle background system, and dynamic lighting effects
+- **📱 Modern Responsive UI:** Futuristic interface with animated controls, theme switching, and performance monitoring
+- **⚡ Real-time Collaboration:** WebSocket-powered multi-user sessions with live annotations and cursor tracking
+- **📄 File Content Preview:** Live syntax-highlighted preview of 25+ file types with encoding support
+- **💾 Export Capabilities:** Export to SVG, PNG, PDF, JSON, Mermaid, and DOT formats with high-resolution options
+- **🏗️ Production Ready:** Rate limiting, caching, security middleware, and horizontal scaling support
+- **🔌 RESTful API:** Comprehensive API for programmatic access and integration
 
 ### Repomixr (repomixr/repomixr.py)
 
@@ -123,6 +137,9 @@ python mermaider.py /path/to/your/project -o project.mermaid
 
 # Generate interactive SVG + draw.io diagram (fast!)
 cd mapper && cargo run
+
+# Launch the interactive web visualizer 🌟
+python web_visualizer.py --debug --port 8888
 ```
 
 ## Usage
@@ -178,6 +195,39 @@ cargo build --release
 # - Automatically opens draw.io in browser
 ```
 
+### Web Visualizer (Interactive Web App)
+
+```bash
+# Quick start with default settings
+python web_visualizer.py
+
+# Custom host and port
+python web_visualizer.py --host 0.0.0.0 --port 8080
+
+# Development mode with auto-reload
+python web_visualizer.py --debug --reload
+
+# Production deployment
+python web_visualizer.py --workers 4 --access-log
+
+# Set environment variables for configuration
+export WEB_VIZ_SECRET_KEY="your-secret-key"
+export WEB_VIZ_MAX_DEPTH=10
+python web_visualizer.py
+```
+
+**Web Interface Features:**
+- 🌐 Navigate to `http://localhost:8000` for the stunning web interface
+- 📂 Enter any directory path and click "Scan Directory" 
+- 🎨 Choose from 6 visualization layouts: Tree, Force, Radial, Treemap, Sunburst, and Galaxy
+- 🌈 Switch between 4 gorgeous themes: Neon, Cyber, Matrix, and Synthwave
+- ✨ Enjoy particle effects and smooth animations throughout the interface
+- 🔍 Use mouse to zoom, pan, and interact with the visualization
+- 📄 Click on files to preview content with syntax highlighting
+- 💾 Export visualizations in SVG, PNG, PDF, JSON, Mermaid, and DOT formats
+- ⚡ Experience real-time collaboration with WebSocket support
+- ⌨️ Use keyboard shortcuts for quick navigation (Ctrl+R to scan, Ctrl+F to auto-fit, etc.)
+
 ### Repomixr
 
 ```bash
@@ -191,6 +241,7 @@ python repomixr/repomixr.py
 
 **Viewing Results:**
 
+- **Web Visualizer**: Interactive web interface at `http://localhost:8000` with real-time collaboration
 - SVG files: Open in any modern browser to see animations
 - Interactive SVG (mapper): Click directory nodes to collapse/expand, hover for effects
 - Draw.io files: Open in draw.io or automatically launched in browser by mapper
@@ -244,6 +295,7 @@ The tools use a modular configuration system:
 directory-visualization-tools/
 ├── flowcharter.py              # Animated SVG flowchart generator
 ├── mermaider.py               # Mermaid diagram generator
+├── web_visualizer.py          # Web visualizer launcher script
 ├── mapper/                    # Fast Rust interactive SVG/draw.io generator
 │   ├── Cargo.toml            #   Rust project configuration
 │   ├── Cargo.lock            #   Dependency lock file
@@ -255,6 +307,26 @@ directory-visualization-tools/
 │       ├── drawio_*.rs       #     Draw.io format modules
 │       ├── svg_defs.svg      #     SVG filter definitions
 │       └── svg_script.js     #     Interactive behavior
+├── web_visualizer/            # Interactive D3.js web application
+│   ├── __init__.py           #   Package initialization
+│   ├── main.py               #   Application entry point
+│   ├── config.py             #   Configuration management
+│   ├── models.py             #   Data models and schemas
+│   ├── requirements.txt      #   Python dependencies
+│   ├── api/                  #   FastAPI application
+│   │   ├── main.py           #     App factory and setup
+│   │   ├── routes.py         #     API endpoint definitions
+│   │   ├── middleware.py     #     Security and performance middleware
+│   │   └── dependencies.py   #     Dependency injection
+│   ├── services/             #   Business logic layer
+│   │   ├── directory_service.py  #  Directory scanning and caching
+│   │   ├── file_service.py   #     File operations and preview
+│   │   ├── export_service.py #     Export format generation
+│   │   ├── cache_service.py  #     Multi-layer caching system
+│   │   └── websocket_service.py  # Real-time collaboration
+│   ├── static/               #   Static web assets
+│   ├── templates/            #   HTML templates
+│   └── tests/                #   Test suite
 ├── repomixr/                  # Repository analysis and management tool
 ├── config/                    # Configuration modules
 │   ├── __init__.py           #   Shared constants and imports
@@ -318,6 +390,38 @@ cargo build --release     # Build optimized executable
 - Automatic draw.io launch in browser
 - Smart filtering of build/cache directories
 - Fast Rust-powered directory scanning
+
+### `web_visualizer` (Web Application)
+
+**Production-grade web application for interactive directory visualization**
+
+**Usage:**
+
+```bash
+# Quick start
+python web_visualizer.py
+
+# Custom configuration
+python web_visualizer.py --host 0.0.0.0 --port 8080 --debug
+
+# Production deployment
+python web_visualizer.py --workers 4 --access-log
+```
+
+**Features:**
+- Interactive D3.js visualizations with zoom, pan, and expand/collapse
+- Real-time file content preview with syntax highlighting for 25+ languages
+- WebSocket-powered collaboration with annotations and live cursors
+- Export to SVG, PNG, PDF, JSON, Mermaid, and DOT formats
+- RESTful API for programmatic access
+- Production-ready with rate limiting, caching, and security middleware
+- Horizontal scaling support with multiple workers
+
+**API Endpoints:**
+- `POST /api/scan-directory` - Scan directory structure
+- `GET /api/file-content` - Get file content with preview
+- `POST /api/export` - Export visualization in various formats
+- `WebSocket /ws` - Real-time collaboration
 
 ## Performance Features
 

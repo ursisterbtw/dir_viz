@@ -1,0 +1,30 @@
+# Core web framework
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+
+# Data validation and settings
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Security and middleware  
+slowapi>=0.1.9
+python-multipart>=0.0.6
+
+# File operations and content detection
+aiofiles>=23.2.1
+python-magic>=0.4.27
+
+# Async utilities
+httpx>=0.25.0
+
+# Optional dependencies for enhanced features
+cairosvg>=2.7.1  # For PNG/PDF export
+GitPython>=3.1.40  # For Git integration
+
+# Development dependencies (optional)
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+black>=23.0.0
+isort>=5.12.0
+mypy>=1.7.0
